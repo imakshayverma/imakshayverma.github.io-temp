@@ -82,7 +82,7 @@ var PageTransitions = (function() {
 			outClass = '', inClass = '';
 
 		switch( animation ) {
-
+/*
 			case 1:
 				outClass = 'pt-page-moveToLeft';
 				inClass = 'pt-page-moveFromRight';
@@ -222,11 +222,12 @@ var PageTransitions = (function() {
 			case 35:
 				outClass = 'pt-page-flipOutBottom';
 				inClass = 'pt-page-flipInTop pt-page-delay500';
-				break;
-			case 36:
+				break;*/
+			default:
 				outClass = 'pt-page-rotateFall pt-page-ontop';
 				inClass = 'pt-page-scaleUp';
 				break;
+				/*
 			case 37:
 				outClass = 'pt-page-rotateOutNewspaper';
 				inClass = 'pt-page-rotateInNewspaper pt-page-delay500';
@@ -350,7 +351,7 @@ var PageTransitions = (function() {
 			case 67:
 				outClass = 'pt-page-rotateSlideOut';
 				inClass = 'pt-page-rotateSlideIn';
-				break;
+				break;*/
 
 		}
 

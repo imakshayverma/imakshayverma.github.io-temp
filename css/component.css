@@ -45,7 +45,8 @@ html, body { height: 100%; }
 /* Text Styles, Colors, Backgrounds */
 
 .pt-page h1 {
-	position: absolute;
+	position: relative;
+	padding-top: 100px;
 	font-weight: 300;
 	font-size: 4.4em;
 	line-height: 1;
@@ -74,7 +75,7 @@ html, body { height: 100%; }
 }
 
 .pt-page-1 {
-	background: #7bb7fa;
+	background: #3F51B5;
 }
 
 .pt-page-2 {
@@ -101,9 +102,9 @@ html, body { height: 100%; }
 
 .pt-triggers {
 	position: absolute;
-	width: 300px;
+	
 	z-index: 999999;
-	top: 12%;
+	top: 60%;
 	left: 50%;
 	margin-top: 130px;
 	-webkit-transform: translateX(-50%);
@@ -125,7 +126,8 @@ html, body { height: 100%; }
 	margin: 10px 0 20px;
 	padding: 0px 20px;
 	line-height: 50px;
-	height: 50px;
+	height: 5em;
+	width:5em;
 	letter-spacing: 1px;
 	width: 100%;
 	cursor: pointer;
@@ -141,8 +143,8 @@ html, body { height: 100%; }
 }
 
 .pt-touch-button {
-	background: #fff;
-	color: #aaa;
+	
+	
 }
 
 .pt-triggers .dl-menuwrapper button {
