@@ -75,27 +75,27 @@ html, body { height: 100%; }
 }
 
 .pt-page-1 {
-	background: #3F51B5;
+	background: #073359;
 }
 
 .pt-page-2 {
-	background: #7bb7fa;
+	background: #F2CB05;
 }
 
 .pt-page-3 {
-	background: #60d7a9;
+	background: #BD4932;
 }
 
 .pt-page-4 {
-	background: #fdc162;
+	background: #70B85D;
 }
 
 .pt-page-5 {
-	background: #fd6a62;
+	background: #54D0ED;
 }
 
 .pt-page-6 {
-	background: #f68dbb;
+	background: #FFFEF1;
 }
 
 /* Triggers (menu and button) */
