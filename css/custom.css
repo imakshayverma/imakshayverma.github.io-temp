@@ -1,5 +1,6 @@
 #top-title{
 	font-size: 55px;
+        font-family: 'Roboto', sans-serif;
     color: #FFF;
 
 }
@@ -84,4 +85,9 @@
 #type-slide1{
     margin-left: auto;
     margin-right: auto;
+    padding-top: 150px;
+
+    color: #FFF;
+   font-family: alex-brush, cursive;
+    font-size: 32px;
 }

@@ -67,7 +67,7 @@ html, body { height: 100%; }
 	word-spacing: 0;
 	letter-spacing: 0;
 	display: block;
-	opacity: 0.4;
+	opacity: 0.8;
 }
 
 .pt-page h1 strong {
@@ -120,6 +120,8 @@ html, body { height: 100%; }
 .pt-triggers .dl-menuwrapper button,
 .pt-touch-button {
 	border: none;
+	margin-left: auto;
+    margin-right: auto;
 	font-size: 13px;
 	font-weight: 700;
 	text-transform: uppercase;
