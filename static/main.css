@@ -15,15 +15,26 @@ body {
 
   color: #d4f8e3;
   -webkit-font-smoothing: none;
+  -moz-font-smoothing: none;
   -moz-animation: blink 0.1s steps(2, start) infinite, skip 7s linear infinite, flicker 0.1s steps(2, start) infinite;
   -webkit-animation: blink 0.1s steps(2, start) infinite, skip 7s linear infinite, flicker 0.1s steps(2, start) infinite;
   animation: blink 0.1s steps(2, start) infinite, skip 7s linear infinite, flicker 0.1s steps(2, start) infinite;
 }
+#not-found, #not-found body {
+  display: table;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
 
 body :after{
   visibility: visible;
+  content: '';
+  background-color: #d4f8e3;
+  
  -moz-box-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), -1px 0 3px rgba(103, 171, 236, 0.6), 1px 0 4px rgba(69, 112, 204, 0.5);
-  -webkit-box-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), -1px 0 3px rgba(103, 171, 236, 0.6), 1px 0 4px rgba(69, 112, 204, 0.5);
+-webkit-box-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), -1px 0 3px rgba(103, 171, 236, 0.6), 1px 0 4px rgba(69, 112, 204, 0.5); 
   box-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), -1px 0 3px rgba(103, 171, 236, 0.6), 1px 0 4px rgba(69, 112, 204, 0.5);
   -moz-animation: flicker 0.1s steps(2, start) infinite, ready 1s steps(2, start) 25s infinite;
   -webkit-animation: flicker 0.1s steps(2, start) infinite, ready 1s steps(2, start) 25s infinite;
@@ -91,6 +102,11 @@ body :after{
     visibility: hidden;
   }
 }
+
+
+
+
+
 a {
   text-decoration: none;
   color: #666; }
@@ -325,3 +341,105 @@ pre {
         color: #CCC; }
 
 
+
+
+
+
+
+/* line 11, ../../_sass/404.scss */
+#not-found body {
+  position: relative;
+  background-color: #1d2b2a;
+  background-image: url(/assets/img/404-stripe.png), url(/assets/img/404-noise.png);
+  background-repeat: repeat-x, repeat;
+  background-position: 0 0%;
+  background-attachment: fixed;
+ 
+  -webkit-font-smoothing: none;
+  text-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), -1px 0 3px rgba(103, 171, 236, 0.6), 1px 0 4px rgba(69, 112, 204, 0.5);
+  -moz-animation: blink 0.1s steps(2, start) infinite, skip 7s linear infinite, flicker 0.1s steps(2, start) infinite;
+  -webkit-animation: blink 0.1s steps(2, start) infinite, skip 7s linear infinite, flicker 0.1s steps(2, start) infinite;
+  animation: blink 0.1s steps(2, start) infinite, skip 7s linear infinite, flicker 0.1s steps(2, start) infinite;
+}
+/* line 26, ../../_sass/404.scss */
+
+/* line 32, ../../_sass/404.scss */
+
+/* line 38, ../../_sass/404.scss */
+#not-found body #story:after {
+  visibility: visible;
+  content: '';
+  background-color: #d4f8e3;
+ 
+  -moz-box-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), -1px 0 3px rgba(103, 171, 236, 0.6), 1px 0 4px rgba(69, 112, 204, 0.5);
+  -webkit-box-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), -1px 0 3px rgba(103, 171, 236, 0.6), 1px 0 4px rgba(69, 112, 204, 0.5);
+  box-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), -1px 0 3px rgba(103, 171, 236, 0.6), 1px 0 4px rgba(69, 112, 204, 0.5);
+  -moz-animation: flicker 0.1s steps(2, start) infinite, ready 1s steps(2, start) 25s infinite;
+  -webkit-animation: flicker 0.1s steps(2, start) infinite, ready 1s steps(2, start) 25s infinite;
+  animation: flicker 0.1s steps(2, start) infinite, ready 1s steps(2, start) 25s infinite;
+}
+/* line 52, ../../_sass/404.scss */
+
+/* line 55, ../../_sass/404.scss */
+
+
+@-moz-keyframes blink {
+  to {
+    background-color: #223332;
+  }
+}
+@-webkit-keyframes blink {
+  to {
+    background-color: #223332;
+  }
+}
+@keyframes blink {
+  to {
+    background-color: #223332;
+  }
+}
+@-moz-keyframes skip {
+  to {
+    background-position: 0 100%;
+  }
+}
+@-webkit-keyframes skip {
+  to {
+    background-position: 0 100%;
+  }
+}
+@keyframes skip {
+  to {
+    background-position: 0 100%;
+  }
+}
+@-moz-keyframes flicker {
+  to {
+    color: #bddeca;
+  }
+}
+@-webkit-keyframes flicker {
+  to {
+    color: #bddeca;
+  }
+}
+@keyframes flicker {
+  to {
+    color: #bddeca;
+  }
+}
+@-moz-keyframes ready {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes ready {
+  to {
+    visibility: hidden;
+  }
+}
+@keyframes ready {
+  to {
+    visibility: hidden;
+  }
+}
