@@ -126,7 +126,7 @@ p {
   min-height: 450px;
   margin: 0 auto 30px;
   padding: 10px 0;
-  background: url(../img/header-bg.jpg) top center no-repeat fixed;
+
   background-size: 100%; }
   @media screen and (max-width: 1500px) {
     .header {
@@ -161,7 +161,7 @@ p {
   transition: all 0.5s ease-out; }
 
 .shift-text {
-  margin: 80px auto 110px; }
+  margin: 40px auto 110px; }
   .shift-text .text-body {
     height: 220px; }
   .shift-text .tagline {
