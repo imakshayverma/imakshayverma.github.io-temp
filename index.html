@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://www.mattboldt.com/demos/typed-js/ -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>Akshay Verma</title>
+    <link rel="icon" href="static/spinner10.png" type="image/gif" sizes="16x16">
+    <script type="text/javascript" async="" src="./static/ga.js"></script>
+    <script src="./static/jquery.min.js"></script>
+    <style type="text/css"></style>
+    <meta name="description" content="Official Personal Website of Akshay Verma. Interest based in Data Science, Product Development, UX Designing. Professionally work based in developing data products as Web Developer, Data Analyst, UX Designer.  ">
+    <meta name="keywords" content=" Akshay Verma Web Developer UX Designer">
+    <meta name="title" content="Akshay Verma" />
+    <meta itemprop="name" content="Akshay Verma" />
+    <meta property="og:title" content="Akshay Verma" />
+    <meta itemprop="description" content="Official Personal Website of Akshay Verma. Interest based in Data Science, Product Development, UX Designing. Professionally work based in developing data products as Web Developer, Data Analyst, UX Designer. " />
+    <meta id="meta-tag-description" property="og:description" content="Official Personal Website of Akshay Verma. Interest based in Data Science, Product Development, UX Designing. Professionally work based in developing data products as Web Developer, Data Analyst, UX Designer. " />
+    <script src="./static/typed.custom.js" type="text/javascript"></script>
+    <script src="./static/typed.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+    <link href="./static/main.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+    <script>
+    $(function() {
+        $("#typed").typed({
+            stringsElement: $('#typed-strings'),
+            typeSpeed: 5,
+            callback: function() {
+                shift();
+            }
+        });
+
+    });
+
+    function shift() {
+        $(".head-wrap").addClass("shift-text");
+        terminalHeight();
+    }
+
+    function terminalHeight() {
+        var termHeight = $(".terminal-height");
+        var value = termHeight.text();
+        value = parseInt(value);
+        setTimeout(function() {
+            if (value > 10) {
+                value = value - 1;
+                this.txtValue = value.toString();
+                termHeight.text(this.txtValue);
+                self.terminalHeight();
+            } else {
+                clearTimeout();
+            }
+        }, 10);
+    }
+
+
+
+    $(function() {
+        var options = {
+            stringsElement: $('#typed-strings'),
+            typeSpeed: 0
+        }
+        $("button").click(function() {
+            $(".element").typed(options);
+        });
+    });
+    </script>
+    <style>
+    /* Portrait */
+    
+    @media only screen and (min-device-width: 320px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+        .text-editor-wrap {
+            height: auto;
+            font-size: 14px;
+        }
+        .shift-text .text-body {
+            height: 540px;
+            line-height: 1.5em;
+            font-size: 14px;
+        }
+    }
+    /* Landscape */
+    
+    @media only screen and (min-device-width: 320px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+        .text-editor-wrap {
+            height: auto;
+            font-size: 14px;
+        }
+        .shift-text .text-body {
+            height: 440px;
+            line-height: 1.5em;
+        }
+    }
+    
+    .text-body {
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 20px;
+        line-height: 150%;
+        letter-spacing: 1px;
+    }
+    
+    .title {
+        font-family: 'Ubuntu', sans-serif;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="head-wrap shift-text">
+            <div class="text-editor-wrap">
+                <div class="title-bar">
+                    <span class="title"> akshay@akshayverma.com — bash 
+                            <span class="terminal-height"></span>
+                    </span>
+                </div>
+                <div class="addthis_responsive_sharing"></div>
+                <div class="text-body">
+                    <div id="typed-strings">
+                        <p>$ Akshay Verma
+                            <br>$ Visualisation Consultant (Open Budget Data Portal) - CBGA India
+                            <br> $ Interests - Building Data Products (Web Developer, Data Analyst, UX Designer)
+                            <br> $ Co-organiser - Google Developers Group, Indore
+                            <br> $ Blog - Comming Soon!
+                            <br> $ Connect -
+                            <a href="https://twitter.com/akshaysahab" target="_blank">
+                                <i class="fa fa-twitter" aria-hidden="true"></i> - Twitter</a> |
+                            <a href="https://github.com/akshay2905" target="_blank">
+                                <i class="fa fa-github" aria-hidden="true"></i> - Github</a> | <a href="https://www.facebook.com/Akshayverma29" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i> - Facebook </a> | <a href="https://www.instagram.com/akshaysahab/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i> - Instagram </a>|
+                            <a href="https://in.linkedin.com/in/akshay-verma-621b3098" target="_blank"> <i class="fa fa-linkedin-square" aria-hidden="true"></i> - Linkedin </a>
+                        </p>
+                    </div>
+                    <span id="typed"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
