@@ -1,10 +1,10 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 * {
   padding: 0;
   margin: 0; }
 
 body {
-  font-family: 'Roboto', serif;
+
   font-size: 100%;
   background-color: #1d2b2a;
   background-image: url(404-stripe.png), url(404-noise.png);
@@ -185,7 +185,7 @@ p {
 
 .title-bar {
   padding: 5px 0;
-  font-family: "Roboto", sans-serif;
+
   font-size: 0.75em;
   text-align: center;
   color: #000000;
@@ -203,7 +203,7 @@ p {
   padding: 10px;
   color: #f0f0f0;
   
-  font-family: "Consolas", "Courier New", "Courier";
+
   font-size: 1.55em;
   line-height: 1.20em;
   font-weight: 500;
@@ -237,7 +237,7 @@ pre {
   margin: 0 auto 20px;
   padding: 20px;
   color: #444;
-  font-family: "Roboto", "Courier New", "Courier";
+
   font-weight: 500;
   background: #fff;
   border: #EEE 1px solid;
