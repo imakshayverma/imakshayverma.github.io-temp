@@ -14,7 +14,7 @@ if (document.getElementsByClassName("demo").length > 0) {
   var i = 0;
   var txt = `About Me
              
-            I am  technologist interested in building products and experiences with data. Have worked with for-profit and non-profit organization in cross-functional roles to building application that make data, information more accessible. I believe in the ideas of community and transperancy. In my past time, I like to indulge in Philoshpy, Culture, Sports and Food.   
+  I am a technologist interested in building products and experiences with data. Have worked with for-profit and non-profit organizations in cross-functional roles building applications that make data, information more accessible. I believe in the ideas of community and transparency. In my past time, I like to indulge in Philosophy, Culture, Sports, and Food.
 
             Updates on the Website soon. Till then Connect with me! 
              `;
