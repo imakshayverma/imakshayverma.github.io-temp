@@ -1,6 +1,6 @@
 /* nav specialized to landing page */
 .logo {
-  background: url('logo.svg') no-repeat;
+  background: url("logo.svg") no-repeat;
   background-size: contain;
   margin: 1rem 0 0 1rem;
 }
@@ -18,40 +18,43 @@ nav {
 
 .hero__title {
   font-weight: 900;
+  font-size: 32px;
+  margin: 23px 0px;
   color: var(--header-color);
 }
 
 .hero__description {
   margin: -1rem auto 1rem auto;
   color: white;
+  margin-bottom: 12px;
   font-weight: 100;
   font-size: 23px;
 }
 
 .hero__description i {
-    font-size: 9px;
-    vertical-align: middle;
-    margin: 0px 10px;
+  font-size: 9px;
+  vertical-align: middle;
+  margin: 0px 10px;
 }
 
 .social-connect a {
-    color: white;
-    font-size: 30px;
-    margin: 0px 7px;
+  color: white;
+  font-size: 30px;
+  margin: 0px 7px;
 }
 
 .social-connect {
-    margin-bottom: 5px;
-    display: block;
+  margin-bottom: 5px;
+  display: block;
 }
 
 .hero__terminal {
-  width: 60%;
-  margin: -10rem auto 3rem auto;
+  width: 50%;
+  margin: -150px auto 3rem auto;
   text-align: left;
   color: white;
   line-height: 1.2rem;
-  padding: 0 1rem;
+  padding: 0 2rem;
   border-radius: 4px;
   background-color: #232323;
   min-height: 285px;
@@ -188,7 +191,9 @@ nav {
   .tab__container .code {
     margin-top: 2rem;
   }
-  .feature, .keybinding, .changelog__item {
+  .feature,
+  .keybinding,
+  .changelog__item {
     flex-direction: column;
   }
   .feature__item {
@@ -198,4 +203,9 @@ nav {
   .keybinding {
     font-size: 0.8rem;
   }
+}
+
+code.shell-session {
+  font-size: 12px;
+  max-width: 500px;
 }
