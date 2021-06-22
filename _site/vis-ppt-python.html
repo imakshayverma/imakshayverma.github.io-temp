@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Building Data Visualizations in PowerPoint Using Python | Akshay Verma</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Building Data Visualizations in PowerPoint Using Python" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Presentation are usually boring. What if you could change that. This is a blog post of how you can create custom data visualization in PowerPoint Using Python." />
+<meta property="og:description" content="Presentation are usually boring. What if you could change that. This is a blog post of how you can create custom data visualization in PowerPoint Using Python." />
+<link rel="canonical" href="http://0.0.0.0:4000/blog/vis-ppt-python.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/blog/vis-ppt-python.html" />
+<meta property="og:site_name" content="Akshay Verma" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-02T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Presentation are usually boring. What if you could change that. This is a blog post of how you can create custom data visualization in PowerPoint Using Python.","dateModified":"2020-07-02T00:00:00-05:00","datePublished":"2020-07-02T00:00:00-05:00","headline":"Building Data Visualizations in PowerPoint Using Python","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/blog/vis-ppt-python.html"},"url":"http://0.0.0.0:4000/blog/vis-ppt-python.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+    crossorigin="anonymous"
+  />
+  <!-- CSS only -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+    crossorigin="anonymous"
+  />
+  <!-- <link href="/assets/css/blog-theme.css" rel="stylesheet" /> --><link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/blog/feed.xml" title="Akshay Verma" /><link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico">
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Building Data Visualizations in PowerPoint Using Python | Akshay Verma</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Building Data Visualizations in PowerPoint Using Python" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Presentation are usually boring. What if you could change that. This is a blog post of how you can create custom data visualization in PowerPoint Using Python." />
+<meta property="og:description" content="Presentation are usually boring. What if you could change that. This is a blog post of how you can create custom data visualization in PowerPoint Using Python." />
+<link rel="canonical" href="http://0.0.0.0:4000/blog/vis-ppt-python.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/blog/vis-ppt-python.html" />
+<meta property="og:site_name" content="Akshay Verma" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-02T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Presentation are usually boring. What if you could change that. This is a blog post of how you can create custom data visualization in PowerPoint Using Python.","dateModified":"2020-07-02T00:00:00-05:00","datePublished":"2020-07-02T00:00:00-05:00","headline":"Building Data Visualizations in PowerPoint Using Python","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/blog/vis-ppt-python.html"},"url":"http://0.0.0.0:4000/blog/vis-ppt-python.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="//use.fontawesome.com/releases/v5.0.7/css/all.css"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Lato:300,400,900&display=swap"
+  rel="stylesheet"
+/><link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/blog/feed.xml" title="Akshay Verma" />
+
+<script>
+  function wrap_img(fn) {
+    if (
+      document.attachEvent
+        ? document.readyState === "complete"
+        : document.readyState !== "loading"
+    ) {
+      var elements = document.querySelectorAll(".post img");
+      Array.prototype.forEach.call(elements, function (el, i) {
+        if (el.getAttribute("title")) {
+          const caption = document.createElement("figcaption");
+          var node = document.createTextNode(el.getAttribute("title"));
+          caption.appendChild(node);
+          const wrapper = document.createElement("figure");
+          wrapper.className = "image";
+          el.parentNode.insertBefore(wrapper, el);
+          el.parentNode.removeChild(el);
+          wrapper.appendChild(el);
+          wrapper.appendChild(caption);
+        }
+      });
+    } else {
+      document.addEventListener("DOMContentLoaded", fn);
+    }
+  }
+  window.onload = wrap_img;
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link");
+    elem.forEach((e) => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+  });
+</script>
+<link rel="stylesheet" href="/blog/assets/css/style.css">
+</head>
+<body>
+<div class="main-wrapper">
+  <div class="card-wrapper"><header class="site-header">
+  <div class="wrapper"><div class="row">
+      <div class="col-10 col-sm-8 header-left">
+        <div class="row">
+          <div class="col">
+            <a
+              class="site-title pt-1"
+              rel="author"
+              href="/blog/"
+              >Akshay Verma</a
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="social-links"><ul class="social-media-list"><li>
+    <a
+      rel="noreferrer"
+      target="_blank"
+      href="https://github.com/imakshayverma"
+      title="imakshayverma"
+    >
+      <i class="fab fa-github" aria-hidden="true"></i>
+      <!-- <svg class="svg-icon grey">
+        <use
+          xlink:href="/blog/assets/minima-social-icons.svg#github"
+        ></use></svg
+    > -->
+    </a>
+  </li><li>
+    <a
+      rel="noreferrer"
+      target="_blank"
+      href="https://www.instagram.com/akshayverma295"
+      title="akshayverma295"
+      ><!-- <svg class="svg-icon grey">
+        <use
+          xlink:href="/blog/assets/minima-social-icons.svg#instagram"
+        ></use></svg
+    > --><i class="fab fa-instagram"></i>
+    </a>
+  </li><li>
+    <a
+      rel="noreferrer"
+      target="_blank"
+      href="https://www.linkedin.com/in/imakshayverma"
+      title="imakshayverma"
+    >
+      <i class="fab fa-linkedin-square" aria-hidden="true"></i>
+      <!-- <svg class="svg-icon grey">
+        <use
+          xlink:href="/blog/assets/minima-social-icons.svg#linkedin"
+        ></use></svg
+    > -->
+    </a>
+  </li><li>
+    <a
+      rel="noreferrer"
+      target="_blank"
+      href="https://twitter.com/imakshayverma"
+      title="imakshayverma"
+    >
+      <i class="fab fa-twitter"></i>
+      <!-- <svg class="svg-icon grey">
+        <use
+          xlink:href="/blog/assets/minima-social-icons.svg#twitter"
+        ></use></svg
+    >--></a
+    >
+  </li></ul>
+</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2 col-sm-4"><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path
+                  d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"
+                />
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+            <ul class="nav flex-column pr-2 pb-3"><li class="nav-item">
+                <a
+                  class="nav-link page-link active"
+                  aria-current="page"
+                  href="/blog/_pages/about.html"
+                  >About Me</a
+                >
+              </li><li class="nav-item">
+                <a
+                  class="nav-link page-link active"
+                  aria-current="page"
+                  href="/blog/search/"
+                  >Search</a
+                >
+              </li><li class="nav-item">
+                <a
+                  class="nav-link page-link active"
+                  aria-current="page"
+                  href="/blog/categories/"
+                  >Tags</a
+                >
+              </li></ul>
+          </div>
+        </nav></div>
+    </div>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Building Data Visualizations in PowerPoint Using Python</h1><p class="page-description">Presentation are usually boring. What if you could change that. This is a blog post of how you can create custom data visualization in PowerPoint Using Python.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-07-02T00:00:00-05:00" itemprop="datePublished">
+        Jul 2, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#Python">Python</a>
+        
+      
+        <a class="category-tags-link" href="/blog/categories/#PowerPoint">PowerPoint</a>
+        
+      
+        <a class="category-tags-link" href="/blog/categories/#Data Visualization">Data Visualization</a>
+        
+      
+        <a class="category-tags-link" href="/blog/categories/#OpenXML">OpenXML</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>The role of data to make decisions in organizations across all the sectors has changed the structural design of our organizations. Our need to be accurate in our decision making has emphasized the need to understand data better. To fulfill the need, the technology around Data Visualizations in the past couple of years has evolved by leaps and bounds.</p>
+
+<p>Thus allowing developers and designers to build great visual artifacts helping people to expand the outreach of the messages they want to share. But the progress in the area of Data Visualization hasn’t been the same across all the platforms. One of these platforms which have missed the fruits of the progress in Powerpoint Presentation.</p>
+
+<h2 id="why-microsoft-powerpoint-is-an-important-platform">Why Microsoft Powerpoint is an important platform?</h2>
+
+<p>Presentation is still one of the most popular medium that people use to communicate insights. Microsoft Powerpoint as a platform still holds a huge market base that spans across a diverse set of sectors. While the Powerpoint UI has evolved a lot since it first appeared in 1987, there have been powerpoint features that didn’t get to see equitable progress. Two such major areas, I believe are – Animations and Charts.</p>
+
+<h2 id="data-visualizations-in-powerpoint">Data Visualizations in Powerpoint</h2>
+
+<p>Visualization gives you answers to questions you didn’t know you had – Ben Schneiderman. Visualization in Powerpoint has been majorly static over the year and the palate to choose from has also been fairly traditional and limiting. While a simple bar chart can always be enough to convey a message, over usage of these graphs and often not in the right context have reduced the excitement data visualizations can generate and thus often fail to captivate our audience’s attention.</p>
+
+<p>It has become harder to capture the attention of our audience to convey the message we want to share. Even from a creator’s perspective, creating a Powerpoint Presentation hasn’t been an exciting platform thus, we often hear people attributing the activity as a boring endeavor. It wouldn’t be too harsh to comment that the world’s largest medium to present insights is probably also one of the hated platforms to engage in.</p>
+
+<p>Hate might be a strong word, but the catchphrase we often hear near the water cooler – “Another Presentation?” might agree with it. While I am not sure if it would be apt to blame the platform for people making bad presentations, I believe it would be a good subject for debate on.</p>
+
+<h2 id="coming-together-of-two-different-worlds--python-and-powerpoint">Coming together of two different worlds – Python and Powerpoint</h2>
+
+<p>I believe a lot of the designs cannot be realized because of the limitation of the feature PowerPoint provides. For Example – Imaging a data visualization with 200 data points in a single slide where each data point is represented using an image first represented in bubble clusters.</p>
+
+<p>Now imagine those data points being rearranged in bar chart fashion in the next slide. And while in a slideshow, these images(data point) move from their initial position to the next position in what is termed as a <a href="https://sanddance.js.org/">Sandance Visualization</a> . Manually putting these data points is not humanly feasible. Such kinds of visualizations sadly aren’t imagined for Powerpoint. But what if I can tell you that dream isn’t too far fetched.</p>
+
+<h2 id="diving-in-">Diving in –</h2>
+
+<p>Building a presentation using Python opens a whole new possibility of designs as with code you can leverage the power of Automation. To do this, we will be using a python library known as Python PPTX. While python-pptx is popularly used for its power to update and create a presentation in a usual workflow process, a lot of interesting use-cases can be thought of.</p>
+
+<p>For this blog post, we will be making a <a href="https://www.youtube.com/watch?v=8NQvismUv9A">Racing Bar chart</a> to visualize how the Population of different countries has changed over the years.</p>
+
+<h2 id="a-little-background">A little background</h2>
+
+<p>Python-PPTX can work with any OpenXML based Presentation platform. Microsoft Powerpoint is formatted in XML to represent the content generated with an aim to ease the transfer of data across their platform. Please refer to the installation process of the Python PPTX package before you begin with code - <a href="https://python-pptx.readthedocs.io/en/latest/user/install.html">https://python-pptx.readthedocs.io/en/latest/user/install.html</a>.</p>
+
+<h2 id="lets-code-">Lets Code –</h2>
+
+<h4 id="import-package">Import Package</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Import Objects from Python PPTX
+</span><span class="kn">from</span> <span class="nn">pptx</span> <span class="kn">import</span> <span class="n">Presentation</span>
+<span class="kn">from</span> <span class="nn">pptx.enum.shapes</span> <span class="kn">import</span> <span class="n">MSO_SHAPE</span>
+<span class="kn">from</span> <span class="nn">pptx.util</span> <span class="kn">import</span> <span class="n">Pt</span><span class="p">,</span> <span class="n">Cm</span><span class="p">,</span> <span class="n">Inches</span>
+<span class="kn">from</span> <span class="nn">pptx.enum.text</span> <span class="kn">import</span> <span class="n">PP_ALIGN</span>
+
+<span class="c1"># Miscellaneous Imports
+#Pandas to read and process data
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">math</span>
+</code></pre></div></div>
+
+<h4 id="create-an-empty-presentation-object">Create an empty Presentation Object</h4>
+
+<p>https://python-pptx.readthedocs.io/en/latest/user/quickstart.html#hello-world-example</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prs</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="choose-a-slide-layout-type">Choose a slide Layout type.</h4>
+
+<p>https://python-pptx.readthedocs.io/en/latest/dev/analysis/sld-layout.html</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">title_slide_layout</span> <span class="o">=</span> <span class="n">prs</span><span class="o">.</span><span class="n">slide_layouts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">blank_slide_layout</span> <span class="o">=</span> <span class="n">prs</span><span class="o">.</span><span class="n">slide_layouts</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h4 id="add-a-slide">Add a Slide</h4>
+
+<p>https://python-pptx.readthedocs.io/en/latest/api/slides.html</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">slide</span> <span class="o">=</span> <span class="n">prs</span><span class="o">.</span><span class="n">slides</span><span class="o">.</span><span class="n">add_slide</span><span class="p">(</span><span class="n">title_slide_layout</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="access-slide-default-objects">Access Slide default objects</h4>
+
+<p>Set the title and subtitle for the visualization.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">title</span> <span class="o">=</span> <span class="n">slide</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">title</span>
+<span class="n">subtitle</span> <span class="o">=</span> <span class="n">slide</span><span class="o">.</span><span class="n">placeholders</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">title</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"World Population Over the Years"</span>
+<span class="n">subtitle</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"A look into how human settlement has evolved."</span>
+</code></pre></div></div>
+
+<h3 id="read-data-from-a-dataset">Read data from a dataset</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"data.csv"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="get-all-the-unique-year-for-available-in-the-dataset">Get all the unique year for available in the dataset.</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">years</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">"Year"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="define-a-scale">Define a scale</h4>
+
+<p>Function to define a scale which provides us the width size in conjuction with the available width size.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">,</span> <span class="n">minScale</span><span class="p">,</span> <span class="n">maxScale</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">minScale</span> <span class="o">+</span> <span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">min_val</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">max_val</span> <span class="o">-</span> <span class="n">min_val</span><span class="p">)</span> \<span class="o">*</span> <span class="p">(</span><span class="n">maxScale</span> <span class="o">-</span> <span class="n">minScale</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="define-function-to-make-numbers-readable">Define function to make numbers readable</h4>
+
+<p>Give that Population data goes from thousands to a couple billions. It is important to make the numbers readable to the audience.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">millnames</span> <span class="o">=</span> <span class="p">[</span><span class="s">''</span><span class="p">,</span><span class="s">' K'</span><span class="p">,</span><span class="s">' M'</span><span class="p">,</span><span class="s">' B'</span><span class="p">,</span><span class="s">' T'</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">millify</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">millidx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">millnames</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mi">0</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="o">/</span><span class="mi">3</span><span class="p">))))</span>
+    <span class="k">return</span> <span class="s">'{:.0f}{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">millidx</span><span class="p">),</span> <span class="n">millnames</span><span class="p">[</span><span class="n">millidx</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h4 id="create-data-visualization-objects">Create Data Visualization objects</h4>
+
+<p>Each slide is a snapshot representation of a year. We create a scale function to get what would be an appropriate width of each. We use a couple of textbox showcase the country name and values.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+
+    <span class="c1"># Add a slide for each year.
+</span>    <span class="n">slide</span> <span class="o">=</span> <span class="n">prs</span><span class="o">.</span><span class="n">slides</span><span class="o">.</span><span class="n">add_slide</span><span class="p">(</span><span class="n">blank_slide_layout</span><span class="p">)</span>
+
+    <span class="c1"># Slice the main dataframe(dataset) by year and sort the sliced dataframe by the value
+</span>    <span class="n">df_slice_by_year</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s">"Year"</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">"value"</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+    <span class="c1"># Find the Maximum value in the data slice which would be the top row.
+</span>    <span class="n">slice_max</span> <span class="o">=</span> <span class="n">df_slice_by_year</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">"value"</span><span class="p">];</span>
+
+    <span class="c1"># Set Min as 0. Bar charts should start from 0 unless you have negative values.
+</span>    <span class="n">slice_min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">#Get the SLide width
+</span>    <span class="n">slideWidth</span> <span class="o">=</span> <span class="n">prs</span><span class="o">.</span><span class="n">slide_width</span><span class="p">;</span>
+
+    <span class="c1"># Add a text box to showcase represent each slide by year.
+</span>    <span class="n">text_box</span> <span class="o">=</span> <span class="n">slide</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">add_textbox</span><span class="p">(</span><span class="n">Cm</span><span class="p">(</span><span class="mi">19</span><span class="p">),</span> <span class="n">Cm</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span> <span class="n">Cm</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">Cm</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">text_box</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+    <span class="n">text_box</span><span class="o">.</span><span class="n">text_frame</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">54</span><span class="p">);</span> <span class="c1"># Change font size of the textbox
+</span>    <span class="n">text_box</span><span class="o">.</span><span class="n">text_frame</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">bold</span> <span class="o">=</span> <span class="bp">True</span><span class="p">;</span> <span class="c1"># Change font weight of the textbox
+</span>
+    <span class="c1"># loop to create bars in a single slide. For the this visualization we will only cover Top 15 countries for each year.
+</span>    <span class="c1"># Here each row in the dataset represents Country and their corresponding Population.
+</span>    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">country</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df_slice_by_year</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()):</span>
+
+        <span class="c1"># Value which becomes the basis for measurement
+</span>        <span class="n">value</span> <span class="o">=</span> <span class="n">country</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">"value"</span><span class="p">]</span>
+
+        <span class="c1"># Setup the Maximum width based on the current slide width
+</span>        <span class="n">scaleMaxVal</span> <span class="o">=</span> <span class="n">slideWidth</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">;</span>
+
+        <span class="c1"># Get the width of each bar which has been scaled to the width of the slide.
+</span>        <span class="n">scaledValue</span> <span class="o">=</span> <span class="n">scale</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">slice_max</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">scaleMaxVal</span><span class="p">);</span>
+
+        <span class="c1"># Add the Bar textbox. Please refer the function documentation to understand what params are passed.
+</span>        <span class="n">bar</span> <span class="o">=</span> <span class="n">slide</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">add_shape</span><span class="p">(</span><span class="n">MSO_SHAPE</span><span class="o">.</span><span class="n">RECTANGLE</span><span class="p">,</span>
+            <span class="n">Cm</span><span class="p">(</span><span class="mf">5.5</span><span class="p">),</span> <span class="n">Cm</span><span class="p">((</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.21</span> <span class="o">*</span> <span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span> <span class="o">+</span> <span class="mi">2</span><span class="p">),</span> <span class="n">scaledValue</span>  <span class="p">,</span> <span class="n">Cm</span><span class="p">(</span><span class="mf">0.7</span><span class="p">));</span>
+
+        <span class="c1"># We add a reference name to each object for us to create a nice motion graphic.
+</span>        <span class="n">bar</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"!!"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">country</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">"Country"</span><span class="p">])</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">" "</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"[^0-9a-zA-Z]+"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+
+        <span class="c1"># Add the value towards the end of the bar to help audience get the order of magnitude.
+</span>        <span class="n">text_frame</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">text_frame</span>
+        <span class="n">text_frame</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">text_frame</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">alignment</span> <span class="o">=</span> <span class="n">PP_ALIGN</span><span class="o">.</span><span class="n">RIGHT</span> <span class="c1"># Choose Alignment
+</span>        <span class="n">p</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span>  <span class="n">Pt</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Change font size
+</span>        <span class="n">p</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">millify</span><span class="p">(</span><span class="n">country</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">"value"</span><span class="p">])</span> <span class="c1"># Format the number to human readable form
+</span>
+        <span class="c1"># Add the country name on the Y-Axis to help user track the country.
+</span>        <span class="n">bartext</span> <span class="o">=</span> <span class="n">slide</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">add_textbox</span><span class="p">(</span><span class="n">Cm</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">Cm</span><span class="p">((</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.21</span> <span class="o">*</span> <span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span> <span class="o">+</span> <span class="mi">2</span><span class="p">),</span> <span class="n">Cm</span><span class="p">(</span><span class="mf">1.5</span><span class="p">),</span> <span class="n">Cm</span><span class="p">(</span><span class="mf">1.5</span><span class="p">));</span>
+        <span class="n">bartext_run</span> <span class="o">=</span> <span class="n">bartext</span><span class="o">.</span><span class="n">text_frame</span><span class="o">.</span><span class="n">add_paragraph</span><span class="p">()</span>
+        <span class="n">bartext</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">country</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">"Country"</span><span class="p">]</span>
+        <span class="n">bartext</span><span class="o">.</span><span class="n">text_frame</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+        <span class="n">bartext_run</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">bold</span> <span class="o">=</span> <span class="bp">True</span><span class="p">;</span>
+
+<span class="c1"># Save the presentation.
+</span><span class="n">prs</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'Raching Bar Chart.pptx'</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h4 id="after-successfully-generating-the-presentation-follow-the-following-steps">After successfully generating the presentation, follow the following steps</h4>
+
+<ul>
+  <li>Open the generated presentation.</li>
+  <li>Select all the slides.</li>
+  <li>Choose “Morph” animation in the Transition Tab (Only Available in Office 2016 version and above).</li>
+  <li>Change the duration of each slide to 0.5 (Feel free to set it up based on your convenience).</li>
+  <li>In the Advance Slide section, deselect the “On Mouse Click” option.</li>
+  <li>In the same section select the “After” option.</li>
+  <li>Voila. Open the presentation in SlideShow mode.</li>
+</ul>
+
+  </div>
+
+  <div class="sharebuttons">
+    <span class="sharetitle"> <i class="fas fa-share"></i> Share the post : </span>
+    <span class="share-icons">
+        <span>
+            <a href="http://www.reddit.com/submit?url=http://0.0.0.0:4000/blog/vis-ppt-python.html&title=Building%20Data%20Visualizations%20in%20PowerPoint%20Using%20Python" target="_blank">
+                <i class="fab fa-reddit-alien"></i>
+            </a>
+        </span>
+        <span>
+            <a href="http://news.ycombinator.com/submitlink?u=http://0.0.0.0:4000/blog/vis-ppt-python.html&t=Building%20Data%20Visualizations%20in%20PowerPoint%20Using%20Python" target="_blank">
+                <i class="fab fa-y-combinator"></i>
+            </a>
+        </span>
+        <span>
+            <a href="https://twitter.com/intent/tweet?via=imakshayverma&url=http://0.0.0.0:4000/blog/vis-ppt-python.html&text=Building%20Data%20Visualizations%20in%20PowerPoint%20Using%20Python" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </span>
+        <span>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=http://0.0.0.0:4000/blog/vis-ppt-python.html" target="_blank">
+                <i class="fab fa-linkedin-square" aria-hidden="true"></i>
+            </a>
+        </span>
+    </span>
+  </div>
+  
+  <div class="row">
+    <div class="col-6">
+      
+      
+    </div>
+    <div class="col-6 text-right">
+          <a class="next" href="/blog//gramener-journey.html">
+            <span class="other-post-link">Next Post</span>
+            A look back at my journey at Gramener &raquo;</a>
+        
+    </div>
+  </div><a class="u-url" href="/blog/vis-ppt-python.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use
+                xlink:href="/blog/assets/minima-social-icons.svg#rss"
+              ></use>
+            </svg>
+            <span>Subscribe</span>
+          </a>
+        </p>
+        <div class="social-links"><ul class="social-media-list"><li>
+    <a
+      rel="noreferrer"
+      target="_blank"
+      href="https://github.com/imakshayverma"
+      title="imakshayverma"
+    >
+      <i class="fab fa-github" aria-hidden="true"></i>
+      <!-- <svg class="svg-icon grey">
+        <use
+          xlink:href="/blog/assets/minima-social-icons.svg#github"
+        ></use></svg
+    > -->
+    </a>
+  </li><li>
+    <a
+      rel="noreferrer"
+      target="_blank"
+      href="https://www.instagram.com/akshayverma295"
+      title="akshayverma295"
+      ><!-- <svg class="svg-icon grey">
+        <use
+          xlink:href="/blog/assets/minima-social-icons.svg#instagram"
+        ></use></svg
+    > --><i class="fab fa-instagram"></i>
+    </a>
+  </li><li>
+    <a
+      rel="noreferrer"
+      target="_blank"
+      href="https://www.linkedin.com/in/imakshayverma"
+      title="imakshayverma"
+    >
+      <i class="fab fa-linkedin-square" aria-hidden="true"></i>
+      <!-- <svg class="svg-icon grey">
+        <use
+          xlink:href="/blog/assets/minima-social-icons.svg#linkedin"
+        ></use></svg
+    > -->
+    </a>
+  </li><li>
+    <a
+      rel="noreferrer"
+      target="_blank"
+      href="https://twitter.com/imakshayverma"
+      title="imakshayverma"
+    >
+      <i class="fab fa-twitter"></i>
+      <!-- <svg class="svg-icon grey">
+        <use
+          xlink:href="/blog/assets/minima-social-icons.svg#twitter"
+        ></use></svg
+    >--></a
+    >
+  </li></ul>
+</div>
+      </div>
+      <div class="footer-col ft-300 footer-description">
+        <p>
+          The website is powered by
+          <a
+            href="https://github.com/fastai/fastpages"
+            rel="noreferrer"
+            target="_blank"
+            >fastpages</a
+          >. This blog is built by customizing the minima template.
+        </p>
+        <p>© Akshay Verma.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+{
+  
+    
+        "post0": {
+            "title": "A look back at my journey at Gramener",
+            "content": "Content coming soon! .",
+            "url": "http://0.0.0.0:4000/blog/gramener-journey.html",
+            "relUrl": "/gramener-journey.html",
+            "date": " • Jun 12, 21"
+        }
+        
+    
+  
+    
+        ,"post1": {
+            "title": "Building Data Visualizations in PowerPoint Using Python",
+            "content": "The role of data to make decisions in organizations across all the sectors has changed the structural design of our organizations. Our need to be accurate in our decision making has emphasized the need to understand data better. To fulfill the need, the technology around Data Visualizations in the past couple of years has evolved by leaps and bounds. . Thus allowing developers and designers to build great visual artifacts helping people to expand the outreach of the messages they want to share. But the progress in the area of Data Visualization hasn’t been the same across all the platforms. One of these platforms which have missed the fruits of the progress in Powerpoint Presentation. . Why Microsoft Powerpoint is an important platform? . Presentation is still one of the most popular medium that people use to communicate insights. Microsoft Powerpoint as a platform still holds a huge market base that spans across a diverse set of sectors. While the Powerpoint UI has evolved a lot since it first appeared in 1987, there have been powerpoint features that didn’t get to see equitable progress. Two such major areas, I believe are – Animations and Charts. . Data Visualizations in Powerpoint . Visualization gives you answers to questions you didn’t know you had – Ben Schneiderman. Visualization in Powerpoint has been majorly static over the year and the palate to choose from has also been fairly traditional and limiting. While a simple bar chart can always be enough to convey a message, over usage of these graphs and often not in the right context have reduced the excitement data visualizations can generate and thus often fail to captivate our audience’s attention. . It has become harder to capture the attention of our audience to convey the message we want to share. Even from a creator’s perspective, creating a Powerpoint Presentation hasn’t been an exciting platform thus, we often hear people attributing the activity as a boring endeavor. It wouldn’t be too harsh to comment that the world’s largest medium to present insights is probably also one of the hated platforms to engage in. . Hate might be a strong word, but the catchphrase we often hear near the water cooler – “Another Presentation?” might agree with it. While I am not sure if it would be apt to blame the platform for people making bad presentations, I believe it would be a good subject for debate on. . Coming together of two different worlds – Python and Powerpoint . I believe a lot of the designs cannot be realized because of the limitation of the feature PowerPoint provides. For Example – Imaging a data visualization with 200 data points in a single slide where each data point is represented using an image first represented in bubble clusters. . Now imagine those data points being rearranged in bar chart fashion in the next slide. And while in a slideshow, these images(data point) move from their initial position to the next position in what is termed as a Sandance Visualization . Manually putting these data points is not humanly feasible. Such kinds of visualizations sadly aren’t imagined for Powerpoint. But what if I can tell you that dream isn’t too far fetched. . Diving in – . Building a presentation using Python opens a whole new possibility of designs as with code you can leverage the power of Automation. To do this, we will be using a python library known as Python PPTX. While python-pptx is popularly used for its power to update and create a presentation in a usual workflow process, a lot of interesting use-cases can be thought of. . For this blog post, we will be making a Racing Bar chart to visualize how the Population of different countries has changed over the years. . A little background . Python-PPTX can work with any OpenXML based Presentation platform. Microsoft Powerpoint is formatted in XML to represent the content generated with an aim to ease the transfer of data across their platform. Please refer to the installation process of the Python PPTX package before you begin with code - https://python-pptx.readthedocs.io/en/latest/user/install.html. . Lets Code – . Import Package . # Import Objects from Python PPTX from pptx import Presentation from pptx.enum.shapes import MSO_SHAPE from pptx.util import Pt, Cm, Inches from pptx.enum.text import PP_ALIGN # Miscellaneous Imports #Pandas to read and process data import pandas as pd import math . Create an empty Presentation Object . https://python-pptx.readthedocs.io/en/latest/user/quickstart.html#hello-world-example . prs = Presentation() . Choose a slide Layout type. . https://python-pptx.readthedocs.io/en/latest/dev/analysis/sld-layout.html . title_slide_layout = prs.slide_layouts[0] blank_slide_layout = prs.slide_layouts[6] . Add a Slide . https://python-pptx.readthedocs.io/en/latest/api/slides.html . slide = prs.slides.add_slide(title_slide_layout) . Access Slide default objects . Set the title and subtitle for the visualization. . title = slide.shapes.title subtitle = slide.placeholders[1] title.text = &quot;World Population Over the Years&quot; subtitle.text = &quot;A look into how human settlement has evolved.&quot; . Read data from a dataset . df = pd.read_csv(&quot;data.csv&quot;) . Get all the unique year for available in the dataset. . years = df[&quot;Year&quot;].unique() . Define a scale . Function to define a scale which provides us the width size in conjuction with the available width size. . def scale(value, min_val, max_val, minScale, maxScale): return minScale + (value - min_val) / (max_val - min_val) * (maxScale - minScale) . Define function to make numbers readable . Give that Population data goes from thousands to a couple billions. It is important to make the numbers readable to the audience. . millnames = [&#39;&#39;,&#39; K&#39;,&#39; M&#39;,&#39; B&#39;,&#39; T&#39;] def millify(n): n = float(n) millidx = max(0,min(len(millnames)-1, int(math.floor(0 if n == 0 else math.log10(abs(n))/3)))) return &#39;{:.0f}{}&#39;.format(n / 10**(3 * millidx), millnames[millidx]) . Create Data Visualization objects . Each slide is a snapshot representation of a year. We create a scale function to get what would be an appropriate width of each. We use a couple of textbox showcase the country name and values. . for year in years: # Add a slide for each year. slide = prs.slides.add_slide(blank_slide_layout) # Slice the main dataframe(dataset) by year and sort the sliced dataframe by the value df_slice_by_year = df[df[&quot;Year&quot;] == year].sort_values(&quot;value&quot;, ascending =False) # Find the Maximum value in the data slice which would be the top row. slice_max = df_slice_by_year.iloc[0][&quot;value&quot;]; # Set Min as 0. Bar charts should start from 0 unless you have negative values. slice_min = 0; #Get the SLide width slideWidth = prs.slide_width; # Add a text box to showcase represent each slide by year. text_box = slide.shapes.add_textbox(Cm(19), Cm(15), Cm(4), Cm(2)) text_box.text = str(year) text_box.text_frame.paragraphs[0].font.size = Pt(54); # Change font size of the textbox text_box.text_frame.paragraphs[0].font.bold = True; # Change font weight of the textbox # loop to create bars in a single slide. For the this visualization we will only cover Top 15 countries for each year. # Here each row in the dataset represents Country and their corresponding Population. for index, country in enumerate(df_slice_by_year.head(15).iterrows()): # Value which becomes the basis for measurement value = country[1][&quot;value&quot;] # Setup the Maximum width based on the current slide width scaleMaxVal = slideWidth * 0.7; # Get the width of each bar which has been scaled to the width of the slide. scaledValue = scale(value, 0, slice_max, 0, scaleMaxVal); # Add the Bar textbox. Please refer the function documentation to understand what params are passed. bar = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Cm(5.5), Cm(( 0.7 * (index + 1) + (0.21 * (index + 1))) + 2), scaledValue , Cm(0.7)); # We add a reference name to each object for us to create a nice motion graphic. bar.name = &quot;!!&quot; + str(country[1][&quot;Country&quot;]).replace(&quot; &quot;, &quot;&quot;).replace(&quot;[^0-9a-zA-Z]+&quot;, &quot;&quot;) # Add the value towards the end of the bar to help audience get the order of magnitude. text_frame = bar.text_frame text_frame.clear() p = text_frame.paragraphs[0] p.alignment = PP_ALIGN.RIGHT # Choose Alignment p.font.size = Pt(10) # Change font size p.text = millify(country[1][&quot;value&quot;]) # Format the number to human readable form # Add the country name on the Y-Axis to help user track the country. bartext = slide.shapes.add_textbox(Cm(2), Cm(( 0.7 * (index + 1) + (0.21 * (index + 1))) + 2), Cm(1.5), Cm(1.5)); bartext_run = bartext.text_frame.add_paragraph() bartext.text = country[1][&quot;Country&quot;] bartext.text_frame.paragraphs[0].font.size = Pt(12); bartext_run.font.bold = True; # Save the presentation. prs.save(&#39;Raching Bar Chart.pptx&#39;) . After successfully generating the presentation, follow the following steps . Open the generated presentation. | Select all the slides. | Choose “Morph” animation in the Transition Tab (Only Available in Office 2016 version and above). | Change the duration of each slide to 0.5 (Feel free to set it up based on your convenience). | In the Advance Slide section, deselect the “On Mouse Click” option. | In the same section select the “After” option. | Voila. Open the presentation in SlideShow mode. | .",
+            "url": "http://0.0.0.0:4000/blog/vis-ppt-python.html",
+            "relUrl": "/vis-ppt-python.html",
+            "date": " • Jul 2, 20"
+        }
+        
+    
+  
+    
+        ,"post2": {
+            "title": "An Example Markdown Post",
+            "content": "Example Markdown Post . Basic setup . Jekyll requires blog post files to be named according to the following format: . YEAR-MONTH-DAY-filename.md . Where YEAR is a four-digit number, MONTH and DAY are both two-digit numbers, and filename is whatever file name you choose, to remind yourself what this post is about. .md is the file extension for markdown files. . The first line of the file should start with a single hash character, then a space, then your title. This is how you create a “level 1 heading” in markdown. Then you can create level 2, 3, etc headings as you wish but repeating the hash character, such as you see in the line ## File names above. . Basic formatting . You can use italics, bold, code font text, and create links. Here’s a footnote 1. Here’s a horizontal rule: . . Lists . Here’s a list: . item 1 | item 2 | . And a numbered list: . item 1 | item 2 | Boxes and stuff . This is a quotation . . You can include alert boxes …and… . . You can include info boxes Images . . Code . You can format text and code per usual . General preformatted text: . # Do a thing do_thing() . Python code and output: . # Prints &#39;2&#39; print(1+1) . 2 . Formatting text as shell commands: . echo &quot;hello world&quot; ./some_script.sh --option &quot;value&quot; wget https://example.com/cat_photo1.png . Formatting text as YAML: . key: value - another_key: &quot;another value&quot; . Tables . Column 1 Column 2 . A thing | Another thing | . Tweetcards . Altair 4.0 is released! https://t.co/PCyrIOTcvvTry it with: pip install -U altairThe full list of changes is at https://t.co/roXmzcsT58 ...read on for some highlights. pic.twitter.com/vWJ0ZveKbZ . &mdash; Jake VanderPlas (@jakevdp) December 11, 2019 Footnotes . This is the footnote. &#8617; . |",
+            "url": "http://0.0.0.0:4000/blog/test-markdown-post.html",
+            "relUrl": "/test-markdown-post.html",
+            "date": " • Jan 14, 20"
+        }
+        
+    
+  
+
+  
+  
+
+  
+      ,"page1": {
+          "title": "About Me",
+          "content": "I am a technologist interested in building products and experiences around data. Have worked with for-profit and non-profit organizations in cross-functional roles, building applications that make data, information more accessible. I share some of my professional learnings in the blog. I am interested in how our society and humans function and thus I like to read and learn about a variety of subjects that help improve my understanding. . When it comes to my professional experience, I majorly had an engineering focus on general problem-solving. I have dabbled with Design and Consulting in conjunction with engineering. For engineering, I have majorly worked on two major focus areas - Full Stack Development and Data Engineering. Check my LinkedIn page to know more about my work. . I had worked on the OpenBudgetsIndia initiative. We build an open data platform in a single pizza team. One of the notable impacts that we were able to create was to bring policy level change at Assam government to publish budget data in an open, accessible format. Assam is currently the leading state when it comes to Budget Transparency and budgetary practices. I am also proud of other projects but sadly most of them are under NDAs. . I also share my knowledge at different platforms through conferences, workshops, seminars. I also took a 6-month semester university course as visiting faculty on Data Visualization. I am fascinated by the craft of teaching and it humbles me truly having taken sessions for a diverse audience ranging from School kids, Government bureaucrats, Master Students from different backgrounds, and people from the tech industry. During the pandemic, I have taken a small hiatus from active knowledge sharing. I hope to be back soon. . I am a big supporter of communities. A while back I used to run Google’s GDG community as a coorganizer to build help local enthusiasts connect, learn and collaborate with each other. It grew to become one of the biggest tech communities in Central India. I have also collaborated with Datakind Bangalore and Wadhwani AI on a bunch of non-profit projects. . I generally like to engage in conversations around food, society, and culture and hope to capture some of the interesting stories around it in the blog. . Want to discuss something interesting, Connect with me on my social handles. .",
+          "url": "http://0.0.0.0:4000/blog/_pages/about.html",
+          "relUrl": "/_pages/about.html",
+          "date": ""
+      }
+      
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+      ,"page8": {
+          "title": "",
+          "content": "{} .",
+          "url": "http://0.0.0.0:4000/blog/redirects.json",
+          "relUrl": "/redirects.json",
+          "date": ""
+      }
+      
+  
+
+  
+  
+
+}

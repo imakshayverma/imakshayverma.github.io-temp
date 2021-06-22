@@ -1,0 +1,27 @@
+{%- assign social = site.minima.social_links -%}
+
+<div class="sharebuttons">
+    <span class="sharetitle"> <i class="fas fa-share"></i> Share the post : </span>
+    <span class="share-icons">
+        <span>
+            <a href="http://www.reddit.com/submit?url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&title={{ page.title | default:"" | uri_escape }}" target="_blank">
+                <i class="fab fa-reddit-alien"></i>
+            </a>
+        </span>
+        <span>
+            <a href="http://news.ycombinator.com/submitlink?u={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&t={{ page.title | default:"" | uri_escape}}" target="_blank">
+                <i class="fab fa-y-combinator"></i>
+            </a>
+        </span>
+        <span>
+            <a href="https://twitter.com/intent/tweet?via={{social.twitter | cgi_escape | escape}}&url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&text={{ page.title | default:"" | uri_escape}}" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </span>
+        <span>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}" target="_blank">
+                <i class="fab fa-linkedin-square" aria-hidden="true"></i>
+            </a>
+        </span>
+    </span>
+  </div>
